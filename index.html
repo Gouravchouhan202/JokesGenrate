@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Welcome to  Jokes duniya !</h1>
+        <section class="api_body"></section>
+        <button id="fetchJoke">Get Another Joke</button>
+    </div>
+        
+
+    <Script >
+        const apiBody = document.querySelector(".api_body");
+      const apiUrl = "https://hindi-jokes-api.onrender.com/jokes?api_key=8952e859c166b9d1c89e39b47379";
+
+      async function fetchData() {
+        const res = await fetch(apiUrl, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const data = await res.json();
+        console.log(data.jokeContent);
+        apiBody.innerHTML = data.jokeContent;
+      }  
+
+      fetchData();
+      // Add event listener to fetch a new joke when the button is clicked
+      document.getElementById("fetchJoke").addEventListener("click", fetchData);
+    </Script>
+</body>
+</html>
